@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Thread {
+  id        Int      @id @default(autoincrement())
+  title     String
+  imageUrl  String?
+  createdAt DateTime @default(now())
+  posts     Post[]
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  content   String
+  imageUrl  String?
+  createdAt DateTime @default(now())
+  threadId  Int
+  thread    Thread   @relation(fields: [threadId], references: [id])
+}
+
+model Pixel {
+  id        Int      @id @default(autoincrement())
+  x         Int
+  y         Int
+  color     String
+  updatedAt DateTime @updatedAt
+
+  @@unique([x, y])
+}
