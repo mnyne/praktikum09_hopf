@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { startTransition, useActionState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -70,14 +70,19 @@ export function NewThreadForm({
       <CardContent>
         <Form {...form}>
           <form
-            action={async (formData) => {
+            onSubmit={async (event) => {
+              event.preventDefault();
+              const formElement = event.currentTarget;
               const isValid = await form.trigger();
 
               if (!isValid) {
                 return;
               }
 
-              formAction(formData);
+              const formData = new FormData(formElement);
+              startTransition(() => {
+                formAction(formData);
+              });
             }}
             className="space-y-4"
           >
