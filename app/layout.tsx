@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { logout } from "@/app/auth/actions";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 import { getCurrentUser } from "@/lib/auth";
 
 const siteUrl = "https://praktikum09-hopf.vercel.app";
@@ -56,9 +57,9 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico?v=2" />
       </head>
       <body className="min-h-full bg-redcanvas text-zinc-950">
-        <header className="border-b border-white/20 bg-white/90 backdrop-blur">
-          <nav className="mx-auto flex max-w-5xl items-center gap-6 px-6 py-4">
-            <Link href="/" className="flex items-center gap-2 font-bold">
+        <header className="site-header border-b border-white/20 bg-white/90 backdrop-blur">
+          <nav className="site-nav mx-auto flex max-w-5xl items-center gap-6 px-6 py-4">
+            <Link href="/" className="brand-mark flex items-center gap-2 font-bold">
               <Image
                 src="/redcanvas-logo.png"
                 alt=""
@@ -69,12 +70,13 @@ export default function RootLayout({
               />
               <span>RedCanvas</span>
             </Link>
-            <Link href="/threads" className="text-sm text-zinc-600 hover:text-zinc-950">
+            <Link href="/threads" className="nav-link text-sm text-zinc-600 hover:text-zinc-950">
               Threads
             </Link>
-            <Link href="/place" className="text-sm text-zinc-600 hover:text-zinc-950">
+            <Link href="/place" className="nav-link text-sm text-zinc-600 hover:text-zinc-950">
               Place
             </Link>
+            <ThemeSwitcher />
             <AuthNav userPromise={userPromise} />
           </nav>
         </header>
@@ -97,7 +99,7 @@ async function AuthNav({
     return (
       <Link
         href="/auth"
-        className="ml-auto text-sm text-zinc-600 hover:text-zinc-950"
+        className="auth-link ml-auto text-sm text-zinc-600 hover:text-zinc-950"
       >
         Login
       </Link>
@@ -105,7 +107,7 @@ async function AuthNav({
   }
 
   return (
-    <div className="ml-auto flex items-center gap-3 text-sm">
+    <div className="auth-link ml-auto flex items-center gap-3 text-sm">
       <span className="text-zinc-600">{user.username}</span>
       <form action={logout}>
         <button className="text-zinc-600 hover:text-zinc-950" type="submit">
