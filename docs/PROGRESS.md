@@ -14,7 +14,8 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - Next.js App Router Projekt mit TypeScript, Tailwind und ESLint.
 - shadcn/ui ist eingerichtet.
 - Prisma 7 mit SQLite und better-sqlite3 Adapter ist eingerichtet.
-- Zod ist installiert und wird fuer Formularvalidierung genutzt.
+- Zod ist installiert und wird fuer client- und serverseitige Formularvalidierung genutzt.
+- react-hook-form und zodResolver sind in den Formularen eingebunden.
 - Basisnavigation mit Startseite, `/threads` und `/place`.
 - Prisma-Modelle fuer `Thread`, `Post` und `Pixel`.
 - Imageboard-Branch `feature/imageboard`.
@@ -25,6 +26,7 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - Antworten koennen erstellt werden.
 - Thread- und Antwortformulare nutzen Server Actions und Zod.
 - Username+Passwort-Login existiert ohne E-Mail oder Telefonnummer.
+- GitHub Actions CI ist fuer Pull Requests eingerichtet.
 
 ## Bewusste Entscheidungen
 
@@ -36,12 +38,7 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 
 ## Noch offen fuer Praktikum 9
 
-- Checks laufen lassen:
-  - `npm.cmd run lint`
-  - `npx.cmd tsc --noEmit --incremental false`
-  - `npx.cmd prisma validate`
-  - `npm.cmd run build`
-- Commit erstellen.
+- Commit erstellen, falls die aktuellen Aenderungen noch nicht committed sind.
 - Branch pushen.
 - Pull Request mit Beschreibung oeffnen.
 - Gegenseitiges Review durchfuehren.
@@ -52,7 +49,6 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - Echte Bildanhaenge statt Bild-URLs.
 - Pixel-Place funktional machen.
 - README bei groesseren Projektentscheidungen aktuell halten.
-- Optional: GitHub Actions CI fuer Pull Requests.
 
 ## Assets
 

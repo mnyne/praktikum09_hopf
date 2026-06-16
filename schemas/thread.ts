@@ -23,3 +23,7 @@ export const SetPixelSchema = z.object({
   y: z.number().int().min(0).max(31),
   color: z.string().regex(/^#[0-9a-fA-F]{6}$/),
 });
+
+export type CreateThreadInput = z.infer<typeof CreateThreadSchema>;
+export type CreatePostInput = z.infer<typeof CreatePostSchema>;
+export type AuthInput = z.infer<typeof AuthSchema>;

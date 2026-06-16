@@ -1,13 +1,27 @@
 "use client";
 
-import { useActionState } from "react";
 import Link from "next/link";
+import { useActionState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { createThread, type FormState } from "./actions";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  CreateThreadSchema,
+  type CreateThreadInput,
+} from "@/schemas/thread";
+import { createThread, type FormState } from "./actions";
 
 const initialState: FormState = {
   message: "",
@@ -22,6 +36,13 @@ export function NewThreadForm({
     createThread,
     initialState
   );
+  const form = useForm<CreateThreadInput>({
+    resolver: zodResolver(CreateThreadSchema),
+    defaultValues: {
+      title: "",
+      content: "",
+    },
+  });
 
   if (!currentUserName) {
     return (
@@ -47,55 +68,85 @@ export function NewThreadForm({
         <CardTitle>Neuen Thread erstellen</CardTitle>
       </CardHeader>
       <CardContent>
-        <form action={formAction} className="space-y-4">
-          <p className="text-xs text-zinc-600">
-            Du postest als <span className="font-medium">{currentUserName}</span>.
-          </p>
+        <Form {...form}>
+          <form
+            action={async (formData) => {
+              const isValid = await form.trigger();
 
-          <div className="space-y-2">
-            <label htmlFor="title" className="text-xs font-medium">
-              Titel
-            </label>
-            <Input
-              id="title"
-              name="title"
-              required
-              minLength={3}
-              maxLength={80}
-              placeholder="z.B. Projektideen fuer RedCanvas"
-            />
-            {state.errors?.title ? (
-              <p className="text-xs text-red-700">{state.errors.title[0]}</p>
-            ) : null}
-          </div>
+              if (!isValid) {
+                return;
+              }
 
-          <div className="space-y-2">
-            <label htmlFor="content" className="text-xs font-medium">
-              Startpost
-            </label>
-            <Textarea
-              id="content"
-              name="content"
-              required
-              minLength={1}
-              maxLength={2000}
-              placeholder="Was willst du in die Runde werfen?"
-            />
-            {state.errors?.content ? (
-              <p className="text-xs text-red-700">{state.errors.content[0]}</p>
-            ) : null}
-          </div>
-
-          {state.message ? (
-            <p className="text-xs text-red-700" aria-live="polite">
-              {state.message}
+              formAction(formData);
+            }}
+            className="space-y-4"
+          >
+            <p className="text-xs text-zinc-600">
+              Du postest als{" "}
+              <span className="font-medium">{currentUserName}</span>.
             </p>
-          ) : null}
 
-          <Button type="submit" disabled={pending}>
-            {pending ? "Erstelle..." : "Thread erstellen"}
-          </Button>
-        </form>
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Titel</FormLabel>
+                  <FormControl>
+                    <Input
+                      required
+                      minLength={3}
+                      maxLength={80}
+                      placeholder="z.B. Projektideen fuer RedCanvas"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                  {state.errors?.title ? (
+                    <p className="text-xs text-red-700">
+                      {state.errors.title[0]}
+                    </p>
+                  ) : null}
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="content"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Startpost</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      required
+                      minLength={1}
+                      maxLength={2000}
+                      placeholder="Was willst du in die Runde werfen?"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                  {state.errors?.content ? (
+                    <p className="text-xs text-red-700">
+                      {state.errors.content[0]}
+                    </p>
+                  ) : null}
+                </FormItem>
+              )}
+            />
+
+            {state.message ? (
+              <p className="text-xs text-red-700" aria-live="polite">
+                {state.message}
+              </p>
+            ) : null}
+
+            <Button type="submit" disabled={pending}>
+              {pending ? "Erstelle..." : "Thread erstellen"}
+            </Button>
+          </form>
+        </Form>
       </CardContent>
     </Card>
   );

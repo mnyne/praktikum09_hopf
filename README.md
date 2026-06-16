@@ -18,7 +18,8 @@ Bereits umgesetzt:
 - Next.js App Router Projekt mit TypeScript, Tailwind und ESLint.
 - shadcn/ui ist eingerichtet.
 - Prisma 7 mit SQLite und better-sqlite3 Adapter ist eingerichtet.
-- Zod-Schemas fuer Formularvalidierung existieren.
+- Zod-Schemas fuer client- und serverseitige Formularvalidierung existieren.
+- react-hook-form und zodResolver werden fuer clientseitige Validierung genutzt.
 - Basisnavigation mit Startseite, `/threads` und `/place`.
 - `/threads` zeigt echte Threads aus der Datenbank.
 - Neue Threads koennen erstellt werden.
@@ -27,6 +28,7 @@ Bereits umgesetzt:
 - Threads und Antworten verwenden gesicherte Anzeigenamen per Username+Passwort.
 - Authentifizierung braucht keine E-Mail-Adresse und keine Telefonnummer.
 - Bild-URLs wurden bewusst entfernt. Bilder sollen spaeter als echte Anhaenge kommen.
+- GitHub Actions CI prueft Pull Requests automatisch.
 
 Noch offen:
 
@@ -97,11 +99,13 @@ app/threads/[id]/page.tsx     Thread-Detailseite
 app/threads/[id]/post-form.tsx
 app/auth/page.tsx              Login und Registrierung ohne E-Mail
 lib/auth.ts                    Session- und Passwort-Hashing
+components/ui/form.tsx         Form-Helfer fuer react-hook-form
 app/place/page.tsx            Pixel-Place Platzhalter
 schemas/thread.ts             Zod-Schemas
 prisma/schema.prisma          Datenmodell
 lib/prisma.ts                 Prisma Client
 docs/PROGRESS.md              Fortschrittslog
+.github/workflows/ci.yml      Pull-Request-Checks
 ```
 
 ## Assets

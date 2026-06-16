@@ -14,6 +14,7 @@ Der Branch `feature/imageboard` baut den Imageboard-Teil:
 - `/threads/[id]`: Detailansicht mit Startpost und Antworten.
 - Threads und Antworten sind pseudonym: Anzeigenamen sind per Passwort gesichert.
 - Es gibt keine E-Mail-Adressen und keine Telefonnummern.
+- Formulare nutzen react-hook-form mit Zod-Resolver fuer clientseitige Validierung.
 - Bilder sind vorerst nicht aktiv. Spaeter sollen echte Anhaenge kommen.
 
 ## Wichtige Dateien
@@ -24,6 +25,8 @@ Der Branch `feature/imageboard` baut den Imageboard-Teil:
 - `app/threads/[id]/post-form.tsx`: Antwortformular.
 - `app/auth/page.tsx`: Login und Registrierung.
 - `lib/auth.ts`: Session-Cookies und Passwort-Hashing.
+- `components/ui/form.tsx`: Form-Helfer fuer react-hook-form.
+- `.github/workflows/ci.yml`: Pull-Request-Checks.
 - `app/threads/actions.ts`: Server Actions fuer Thread und Antwort.
 - `schemas/thread.ts`: Zod-Schemas.
 - `prisma/schema.prisma`: Datenmodell.
