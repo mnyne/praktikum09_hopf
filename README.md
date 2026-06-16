@@ -31,14 +31,16 @@ Bereits umgesetzt:
 - Bild-URLs wurden bewusst entfernt. Bilder sollen spaeter als echte Anhaenge kommen.
 - Logo und Favicon sind eingebunden.
 - Pixel-Place ist funktional und verwendet denselben Login wie das Imageboard.
+- Open Graph Metadata und ein generiertes OG-Bild sind eingebunden.
+- Vercel Web Analytics ist vorbereitet.
+- Der grosse Background wird als komprimiertes WebP ausgeliefert.
 
 Noch offen:
 
-- Supabase `DATABASE_URL` lokal und in Vercel eintragen.
-- Postgres-Baseline-Migration gegen Supabase ausfuehren.
+- Pull Request fuer Praktikum 10 oeffnen und reviewen.
+- Lighthouse nach dem naechsten Vercel-Deploy erneut pruefen.
 - Moderations-/Postfilter planen.
 - Echte Bildanhaenge ergaenzen.
-- Pull Request fuer den Imageboard-Branch oeffnen und reviewen.
 
 Eine detailliertere Fortschrittsliste liegt in:
 
@@ -147,14 +149,20 @@ Diese Datei waere dann im Code erreichbar als:
 /backgrounds/redcanvas-bg.png
 ```
 
+Aktiv eingebunden ist aktuell die optimierte Variante:
+
+```txt
+public/backgrounds/redcanvas-bg.webp
+```
+
 ## Arbeitsweise
 
 Es wird nicht direkt auf `main` entwickelt. Neue Features entstehen auf eigenen
 Branches, zum Beispiel:
 
 ```txt
-feature/imageboard
-feature/place
+feature/praktikum-10
+feature/polish
 feature/moderation
 ```
 

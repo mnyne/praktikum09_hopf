@@ -1,16 +1,44 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { logout } from "@/app/auth/actions";
 import { getCurrentUser } from "@/lib/auth";
 
+const siteUrl = "https://praktikum09-hopf.vercel.app";
+const siteDescription =
+  "An anonymous community board with threads and a shared pixel canvas.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "RedCanvas",
-  description: "Community board with threads and a shared pixel canvas",
+  description: siteDescription,
   icons: {
     icon: [{ url: "/favicon.ico?v=2", type: "image/x-icon" }],
     shortcut: [{ url: "/favicon.ico?v=2", type: "image/x-icon" }],
+  },
+  openGraph: {
+    title: "RedCanvas",
+    description: siteDescription,
+    url: siteUrl,
+    siteName: "RedCanvas",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "RedCanvas preview",
+      },
+    ],
+    locale: "de_DE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RedCanvas",
+    description: siteDescription,
+    images: ["/opengraph-image"],
   },
 };
 
@@ -52,6 +80,7 @@ export default function RootLayout({
         </header>
 
         <main className="mx-auto w-full max-w-5xl px-6 py-8">{children}</main>
+        <Analytics />
       </body>
     </html>
   );

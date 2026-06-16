@@ -135,6 +135,6 @@
   .bg-redcanvas {
     background:
       linear-gradient(rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.62)),
-      url("/backgrounds/redcanvas-bg.png") center / cover fixed;
+      url("/backgrounds/redcanvas-bg.webp") center / cover fixed;
   }
 }
