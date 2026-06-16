@@ -27,6 +27,8 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - Thread- und Antwortformulare nutzen Server Actions und Zod.
 - Username+Passwort-Login existiert ohne E-Mail oder Telefonnummer.
 - GitHub Actions CI ist fuer Pull Requests eingerichtet.
+- RedCanvas-Logo ist in der Navigation eingebunden.
+- Favicon ist fuer Browser-Tabs eingebunden.
 
 ## Bewusste Entscheidungen
 
@@ -62,4 +64,16 @@ Eine Datei `public/backgrounds/redcanvas-bg.png` waere im Browser erreichbar unt
 
 ```txt
 /backgrounds/redcanvas-bg.png
+```
+
+Das Navigationslogo liegt unter:
+
+```txt
+public/redcanvas-logo.png
+```
+
+Das Browser-Favicon liegt unter:
+
+```txt
+public/favicon.ico
 ```

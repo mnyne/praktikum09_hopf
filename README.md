@@ -29,6 +29,7 @@ Bereits umgesetzt:
 - Authentifizierung braucht keine E-Mail-Adresse und keine Telefonnummer.
 - Bild-URLs wurden bewusst entfernt. Bilder sollen spaeter als echte Anhaenge kommen.
 - GitHub Actions CI prueft Pull Requests automatisch.
+- Logo und Favicon sind eingebunden.
 
 Noch offen:
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 import { logout } from "@/app/auth/actions";
@@ -7,6 +8,10 @@ import { getCurrentUser } from "@/lib/auth";
 export const metadata: Metadata = {
   title: "RedCanvas",
   description: "Community board with threads and a shared pixel canvas",
+  icons: {
+    icon: [{ url: "/favicon.ico?v=2", type: "image/x-icon" }],
+    shortcut: [{ url: "/favicon.ico?v=2", type: "image/x-icon" }],
+  },
 };
 
 export default function RootLayout({
@@ -18,11 +23,23 @@ export default function RootLayout({
 
   return (
     <html lang="de" className="h-full antialiased">
+      <head>
+        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
+        <link rel="shortcut icon" href="/favicon.ico?v=2" />
+      </head>
       <body className="min-h-full bg-redcanvas text-zinc-950">
         <header className="border-b border-white/20 bg-white/90 backdrop-blur">
           <nav className="mx-auto flex max-w-5xl items-center gap-6 px-6 py-4">
-            <Link href="/" className="font-bold">
-              RedCanvas
+            <Link href="/" className="flex items-center gap-2 font-bold">
+              <Image
+                src="/redcanvas-logo.png"
+                alt=""
+                width={123}
+                height={40}
+                priority
+                className="h-9 w-auto"
+              />
+              <span>RedCanvas</span>
             </Link>
             <Link href="/threads" className="text-sm text-zinc-600 hover:text-zinc-950">
               Threads
