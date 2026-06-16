@@ -1,5 +1,7 @@
 import { AuthForm } from "./auth-form";
 
+export const dynamic = "force-dynamic";
+
 export default function AuthPage() {
   return (
     <div className="space-y-6">
