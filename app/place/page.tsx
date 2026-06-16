@@ -1,7 +1,9 @@
-import PixelGrid from "@/components/place/PixelGrid";
 import { getVisiblePixels } from "@/app/place/actions";
+import PixelGrid from "@/components/place/PixelGrid";
+import { getCurrentUser } from "@/lib/auth";
 
 export default async function PlacePage() {
+  const currentUser = await getCurrentUser();
   const pixels = await getVisiblePixels();
 
   return (
@@ -9,11 +11,14 @@ export default async function PlacePage() {
       <div>
         <h1 className="text-3xl font-bold">Place</h1>
         <p className="text-muted-foreground">
-          Klicke auf ein Pixel und wähle eine Farbe aus.
+          Klicke auf ein Pixel und waehle eine Farbe aus.
         </p>
       </div>
 
-      <PixelGrid pixels={pixels} />
+      <PixelGrid
+        pixels={pixels}
+        currentUserName={currentUser?.username ?? null}
+      />
     </main>
   );
 }

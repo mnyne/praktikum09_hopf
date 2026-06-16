@@ -1,6 +1,6 @@
 export type PlacePixel = {
   id: number;
-  userId: string;
+  userId: number | null;
   x: number;
   y: number;
   color: string;

@@ -1,12 +1,11 @@
 "use server";
 
-import { randomUUID } from "crypto";
-import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { SetPixelSchema } from "@/schemas/thread";
 import { PLACE_COLORS, type PixelDTO } from "@/src/place_types";
 
-const USER_COOKIE = "place_user_id";
 const GRID_SIZE = 100;
 
 function isValidCoordinate(value: number) {
@@ -15,27 +14,6 @@ function isValidCoordinate(value: number) {
 
 function isValidColor(color: string) {
   return (PLACE_COLORS as readonly string[]).includes(color);
-}
-
-async function getOrCreateUserId() {
-  const cookieStore = await cookies();
-  const existing = cookieStore.get(USER_COOKIE)?.value;
-
-  if (existing) {
-    return existing;
-  }
-
-  const userId = randomUUID();
-
-  cookieStore.set(USER_COOKIE, userId, {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 365,
-  });
-
-  return userId;
 }
 
 export async function getVisiblePixels(): Promise<PixelDTO[]> {
@@ -59,17 +37,27 @@ export async function setPixelColor(input: {
   y: number;
   color: string;
 }): Promise<PixelDTO> {
-  const { x, y, color } = input;
+  const user = await getCurrentUser();
+
+  if (!user) {
+    throw new Error("Bitte logge dich ein, bevor du Pixel setzt.");
+  }
+
+  const result = SetPixelSchema.safeParse(input);
+
+  if (!result.success) {
+    throw new Error("Ungueltige Pixeldaten.");
+  }
+
+  const { x, y, color } = result.data;
 
   if (!isValidCoordinate(x) || !isValidCoordinate(y)) {
-    throw new Error("Ungültige Pixel-Koordinate.");
+    throw new Error("Ungueltige Pixel-Koordinate.");
   }
 
   if (!isValidColor(color)) {
-    throw new Error("Ungültige Farbe.");
+    throw new Error("Ungueltige Farbe.");
   }
-
-  const userId = await getOrCreateUserId();
 
   const pixel = await prisma.$transaction(async (tx) => {
     await tx.pixel.updateMany({
@@ -88,7 +76,7 @@ export async function setPixelColor(input: {
         x,
         y,
         color,
-        userId,
+        userId: user.id,
         visible: true,
       },
       select: {

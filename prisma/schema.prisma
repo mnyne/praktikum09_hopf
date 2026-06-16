@@ -42,6 +42,7 @@ model User {
   sessions     Session[]
   threads      Thread[]
   posts        Post[]
+  pixels       Pixel[]
 }
 
 model Session {
@@ -54,12 +55,13 @@ model Session {
 
 model Pixel {
   id        Int      @id @default(autoincrement())
-  userId    String    
+  userId    Int?
   x         Int
   y         Int
   color     String
   updatedAt DateTime @updatedAt
   visible   Boolean  @default(true)
+  user      User?    @relation(fields: [userId], references: [id])
 
   @@index([x, y, visible])
   @@index([updatedAt])
