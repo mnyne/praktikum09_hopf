@@ -5,22 +5,14 @@ RedCanvas ist ein Gruppenprojekt fuer das Praktikum
 
 ## Beschreibung
 
-RedCanvas ist ein anonymes, solidarisches Community-Board mit zwei Bereichen:
+RedCanvas ist eine Community-Plattform mit Fokus auf Anonymität, Kreativität und gemeinschaftliche Gestaltung. Die Anwendung besteht aus zwei zentralen Bereichen:
 
-- **Imageboard:** Nutzerinnen und Nutzer koennen Threads erstellen und darauf
-  antworten. Anzeigenamen sind per Passwort gesichert, ohne E-Mail-Adresse,
-  Telefonnummer oder Profilzwang.
-- **Pixel-Place:** Eine gemeinsame Pixel-Leinwand, auf der angemeldete Nutzer
-  gemeinsam Pixel setzen und so ein sichtbares Gemeinschaftsbild bauen.
+* **Imageboard:** Nutzerinnen und Nutzer können Threads erstellen und diskutieren. Anzeigenamen lassen sich per Passwort schützen – ganz ohne E-Mail-Adresse, Telefonnummer oder verpflichtendes Profil.
+* **Pixel-Place:** Eine gemeinsame Pixel-Leinwand, auf der registrierte Nutzer Pixel platzieren und gemeinsam ein fortlaufendes Gemeinschaftswerk erschaffen.
 
-Das Projekt versteht sich als offener, antifaschistischer und kreativer Raum im
-Netz. Es nimmt die Idee anonymer Boards auf, aber ohne Hass als Grundton:
-Diskussion, Widerspruch, Solidaritaet und gemeinsames Gestalten stehen im
-Vordergrund.
+RedCanvas greift die Idee klassischer anonymer Boards auf, setzt jedoch einen anderen Schwerpunkt: Statt Provokation und Feindseligkeit stehen respektvoller Austausch, kreative Beiträge und gemeinsames Gestalten im Vordergrund.
 
-Die App ist fuer Studierende, Projektteams und Menschen gedacht, die sehen
-wollen, wie ein kleines Full-Stack-Projekt mit Next.js, Prisma, Supabase,
-Server Actions, Validierung und Deployment aufgebaut sein kann.
+Das Projekt entstand im Rahmen des Praktikums *Multimediaapplikationen/b: Full Stack Development* und dient als praxisnahes Beispiel für die Entwicklung moderner Full-Stack-Webanwendungen mit Next.js, Prisma, Supabase und TypeScript.
 
 ## Tech Stack
 
@@ -143,17 +135,17 @@ docs/
 
 ## Features
 
-- Username+Passwort-Login ohne E-Mail oder Telefonnummer
-- HTTP-only Session-Cookie
-- Threads erstellen und beantworten
-- Client- und serverseitige Validierung mit Zod
-- Pixel auf gemeinsamer Leinwand setzen
-- Place ist nur fuer eingeloggte Nutzer beschreibbar
-- Theme-Dropdown mit `Current` und `Polished`
-- Industrial/Lost-Place-inspiriertes `Polished` Theme
-- Open Graph Metadata und generiertes OG-Bild
-- Vercel Analytics
-- Loading- und Error-State
+* Benutzeranmeldung mit Username und Passwort ohne E-Mail-Adresse
+* Sichere Authentifizierung über HTTP-only Session-Cookies
+* Erstellen und Beantworten von Diskussionsthreads
+* Client- und serverseitige Eingabevalidierung mit Zod
+* Gemeinsame Pixel-Leinwand für kollaborative Kunstprojekte
+* Schreibzugriff auf den Pixel-Place nur für angemeldete Nutzer
+* Umschaltbares Theme-System mit `Current` und `Polished`
+* Industrial- und Lost-Place-inspiriertes Design im `Polished` Theme
+* Automatisch generierte Open-Graph-Metadaten und Vorschaubilder
+* Integration von Vercel Analytics
+* Globale Loading- und Error-States für eine konsistente Nutzererfahrung
 
 ## Pull-Request Checks
 
