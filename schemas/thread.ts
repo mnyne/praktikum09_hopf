@@ -21,6 +21,9 @@ export const AuthSchema = z.object({
 export const SetPixelSchema = z.object({
   x: z.number().int().min(0).max(31),
   y: z.number().int().min(0).max(31),
+  userId: z.string().length(36), // UUID format for use with cookies
+  updatedAt: z.date(),
+  visible: z.boolean().default(true),
   color: z.string().regex(/^#[0-9a-fA-F]{6}$/),
 });
 

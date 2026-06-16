@@ -54,10 +54,13 @@ model Session {
 
 model Pixel {
   id        Int      @id @default(autoincrement())
+  userId    String    
   x         Int
   y         Int
   color     String
   updatedAt DateTime @updatedAt
+  visible   Boolean  @default(true)
 
-  @@unique([x, y])
+  @@index([x, y, visible])
+  @@index([updatedAt])
 }
