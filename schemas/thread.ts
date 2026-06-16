@@ -2,12 +2,20 @@ import { z } from "zod";
 
 export const CreateThreadSchema = z.object({
   title: z.string().min(3).max(80),
-  imageUrl: z.string().url().optional().or(z.literal("")),
+  content: z.string().min(1).max(2000),
 });
 
 export const CreatePostSchema = z.object({
   content: z.string().min(1).max(1000),
-  imageUrl: z.string().url().optional().or(z.literal("")),
+});
+
+export const AuthSchema = z.object({
+  username: z
+    .string()
+    .min(3)
+    .max(32)
+    .regex(/^[a-zA-Z0-9_-]+$/),
+  password: z.string().min(6).max(128),
 });
 
 export const SetPixelSchema = z.object({
