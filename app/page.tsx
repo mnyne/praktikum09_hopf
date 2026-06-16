@@ -12,22 +12,18 @@ export default function Home() {
             RedCanvas
           </p>
           <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
-            Ein anonymes Community-Board fuer Diskussionen und kollaborative
+            Ein anonymes Community-Board für Diskussionen und kollaborative
             Pixelkunst.
           </h1>
           <p className="text-sm leading-6 text-zinc-100">
-            RedCanvas entsteht als Gruppenprojekt im Praktikum. Der erste
-            Bereich ist ein textbasiertes Imageboard mit gesicherten
-            Anzeigenamen ohne E-Mail oder Telefonnummer. Spaeter folgen
-            Bildanhaenge, Moderation und ein gemeinsames Pixel-Canvas im Stil
-            von r/place.
+            RedCanvas entsteht als Gruppenprojekt im Praktikum. Die eine Hälfte ist ein textbasiertes Imageboard mit gesicherten Anzeigenamen ohne E-Mail oder Telefonnummer. Die zweite Hälfte ist eine gemeinsame Canvas, auf der Pixel gesetzt werden können. Später folgen Bildanhänge und Moderation.
           </p>
           <div className="flex flex-wrap gap-3">
             <Button asChild>
-              <Link href="/threads">Threads oeffnen</Link>
-            </Button>
-            <Button asChild variant="secondary">
               <Link href="/auth">Namen sichern</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/">Mehr erfahren</Link>
             </Button>
           </div>
         </div>
@@ -39,12 +35,12 @@ export default function Home() {
             <CardTitle>Imageboard</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm leading-6 text-zinc-600">
+            <p className="text-sm leading-6 text-zinc-400">
               Erstelle Threads und Antworten unter einem gesicherten
               Anzeigenamen, ohne E-Mail, Telefonnummer oder Profilzwang.
             </p>
             <Button asChild>
-              <Link href="/threads">Threads oeffnen</Link>
+              <Link href="/threads">Threads öffnen</Link>
             </Button>
           </CardContent>
         </Card>
@@ -54,9 +50,9 @@ export default function Home() {
             <CardTitle>Pixel-Place</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm leading-6 text-zinc-600">
-              Die Canvas-Seite ist vorbereitet. Im naechsten Schritt wird
-              daraus eine gemeinsame Flaeche, auf der Pixel gesetzt werden.
+            <p className="text-sm leading-6 text-zinc-400">
+              Die Canvas-Seite ist vorbereitet. Im nächsten Schritt wird
+              daraus eine gemeinsame Fläche, auf der Pixel gesetzt werden.
             </p>
             <Button asChild variant="outline">
               <Link href="/place">Place ansehen</Link>

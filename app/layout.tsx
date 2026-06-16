@@ -68,12 +68,11 @@ export default function RootLayout({
                 priority
                 className="h-9 w-auto"
               />
-              <span>RedCanvas</span>
             </Link>
-            <Link href="/threads" className="nav-link text-sm text-zinc-600 hover:text-zinc-950">
+            <Link href="/threads" className="nav-link text-sm text-zinc-300 hover:text-zinc-950">
               Threads
             </Link>
-            <Link href="/place" className="nav-link text-sm text-zinc-600 hover:text-zinc-950">
+            <Link href="/place" className="nav-link text-sm text-zinc-300 hover:text-zinc-950">
               Place
             </Link>
             <ThemeSwitcher />
@@ -99,7 +98,7 @@ async function AuthNav({
     return (
       <Link
         href="/auth"
-        className="auth-link ml-auto text-sm text-zinc-600 hover:text-zinc-950"
+        className="auth-link ml-auto text-sm text-zinc-300 hover:text-zinc-950"
       >
         Login
       </Link>
@@ -108,9 +107,9 @@ async function AuthNav({
 
   return (
     <div className="auth-link ml-auto flex items-center gap-3 text-sm">
-      <span className="text-zinc-600">{user.username}</span>
+      <span className="text-zinc-300">{user.username}</span>
       <form action={logout}>
-        <button className="text-zinc-600 hover:text-zinc-950" type="submit">
+        <button className="text-zinc-300 hover:text-zinc-950" type="submit">
           Logout
         </button>
       </form>
