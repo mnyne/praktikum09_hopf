@@ -18,7 +18,7 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - react-hook-form und zodResolver sind in den Formularen eingebunden.
 - Basisnavigation mit Startseite, `/threads` und `/place`.
 - Prisma-Modelle fuer `Thread`, `Post` und `Pixel`.
-- Aktueller Praktikum-10-Branch baut auf Imageboard und Pixel-Place auf.
+- Aktueller Praktikum-11-Stand baut auf Imageboard, Pixel-Place und PR10-Deployment auf.
 - `/threads` zeigt echte Threads aus Prisma.
 - Neue Threads koennen erstellt werden.
 - Threads haben Titel, Inhalt und einen gesicherten Anzeigenamen.
@@ -36,6 +36,9 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - Vercel Web Analytics ist eingebunden.
 - Der Background wird als komprimiertes WebP ausgeliefert.
 - Lighthouse Performance Audit wurde dokumentiert.
+- About-Seite unter `/about` beschreibt Projektidee und Haltung.
+- Theme-Switcher mit `Current` und `Polished` existiert.
+- `Polished` nutzt einen Industrial/Lost-Place-Look mit Pride-Gradient-Akzenten.
 
 ## Bewusste Entscheidungen
 
@@ -46,18 +49,20 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - `Thread.content` hat in Prisma einen Default, damit alte lokale Testdaten leichter migrierbar bleiben.
 - Supabase wird ueber Prisma angebunden, nicht ueber direkten Browserzugriff. Dadurch bleiben Datenbankzugriffe serverseitig.
 
-## Noch offen fuer Praktikum 10
+## Noch offen fuer Praktikum 11
 
 - Branch pushen.
 - Pull Request mit Beschreibung oeffnen.
 - Gegenseitiges Review durchfuehren.
-- Nach dem naechsten Vercel-Deploy Lighthouse erneut pruefen, damit die WebP-Optimierung live gemessen ist.
+- Screenshots fuer README/PR-Beschreibung aufnehmen.
+- Nach dem naechsten Vercel-Deploy Lighthouse erneut pruefen.
+- Kurze Praesentationsnotizen und Teambeitraege abstimmen.
 
 ## Naechste sinnvolle Features
 
 - Moderations-/Postfilter fuer gesperrte Begriffe und Codes.
 - Echte Bildanhaenge statt Bild-URLs.
-- UX-Polish, Edge Cases und responsive Feinschliff fuer Praktikum 11.
+- UX-Polish, Edge Cases und responsive Feinschliff weiter pruefen.
 - README bei groesseren Projektentscheidungen aktuell halten.
 
 ## Assets
