@@ -39,15 +39,15 @@ export default async function ThreadsPage() {
             {threads.map((thread) => (
               <Card key={thread.id}>
                 <CardHeader>
-                  <CardTitle>
+                  <CardTitle className="text-lg text-red-200">
                     <Link href={`/threads/${thread.id}`}>{thread.title}</Link>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-2 text-sm text-zinc-600">
-                  <p className="line-clamp-3 whitespace-pre-wrap text-zinc-800">
+                <CardContent className="space-y-2 text-sm text-zinc-300">
+                  <p className="line-clamp-3 whitespace-pre-wrap text-zinc-300">
                     {thread.content}
                   </p>
-                  <p>
+                  <p className="text-xs text-zinc-500">
                     {thread.authorName} - {thread._count.posts} Antworten -{" "}
                     {thread.createdAt.toLocaleString("de-DE")}
                   </p>
