@@ -23,14 +23,14 @@ export default async function ThreadsPage() {
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-bold">Threads</h1>
-          <p className="mt-2 text-sm text-zinc-600">
+          <p className="mt-2 text-sm text-zinc-400">
             Anonyme Diskussionen mit frei waehlbarem Anzeigenamen.
           </p>
         </div>
 
         {threads.length === 0 ? (
           <Card>
-            <CardContent className="py-8 text-sm text-zinc-600">
+            <CardContent className="py-8 text-sm text-zinc-300">
               Noch keine Threads vorhanden.
             </CardContent>
           </Card>
