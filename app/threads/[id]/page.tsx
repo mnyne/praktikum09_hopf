@@ -6,6 +6,8 @@ import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { PostForm } from "./post-form";
 
+export const dynamic = "force-dynamic";
+
 type ThreadDetailPageProps = {
   params: Promise<{ id: string }>;
 };

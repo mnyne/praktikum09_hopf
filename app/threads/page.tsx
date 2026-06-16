@@ -5,6 +5,8 @@ import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { NewThreadForm } from "./new-thread-form";
 
+export const dynamic = "force-dynamic";
+
 export default async function ThreadsPage() {
   const currentUser = await getCurrentUser();
   const threads = await prisma.thread.findMany({

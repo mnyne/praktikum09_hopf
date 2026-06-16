@@ -2,6 +2,8 @@ import { getVisiblePixels } from "@/app/place/actions";
 import PixelGrid from "@/components/place/PixelGrid";
 import { getCurrentUser } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+
 export default async function PlacePage() {
   const currentUser = await getCurrentUser();
   const pixels = await getVisiblePixels();

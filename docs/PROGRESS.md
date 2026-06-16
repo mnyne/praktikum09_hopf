@@ -13,7 +13,7 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 
 - Next.js App Router Projekt mit TypeScript, Tailwind und ESLint.
 - shadcn/ui ist eingerichtet.
-- Prisma 7 mit SQLite und better-sqlite3 Adapter ist eingerichtet.
+- Prisma 7 ist auf PostgreSQL/Supabase umgestellt.
 - Zod ist installiert und wird fuer client- und serverseitige Formularvalidierung genutzt.
 - react-hook-form und zodResolver sind in den Formularen eingebunden.
 - Basisnavigation mit Startseite, `/threads` und `/place`.
@@ -26,9 +26,12 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - Antworten koennen erstellt werden.
 - Thread- und Antwortformulare nutzen Server Actions und Zod.
 - Username+Passwort-Login existiert ohne E-Mail oder Telefonnummer.
-- GitHub Actions CI ist fuer Pull Requests eingerichtet.
 - RedCanvas-Logo ist in der Navigation eingebunden.
 - Favicon ist fuer Browser-Tabs eingebunden.
+- Pixel-Place ist funktional.
+- Pixel setzen erfordert denselben Login wie das Imageboard.
+- Die alten SQLite-Migrationen wurden durch eine Postgres-Baseline-Migration ersetzt.
+- `.env.example` dokumentiert die benoetigten Supabase/Vercel-Variablen.
 
 ## Bewusste Entscheidungen
 
@@ -36,7 +39,8 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - Anonymitaet bleibt nach aussen erhalten, aber Anzeigenamen sind per Passwort gesichert.
 - Bild-URLs wurden entfernt. Bilder sollen spaeter als echte Anhaenge umgesetzt werden.
 - `authorName` faellt auf `Anonymous` zurueck, wenn kein Anzeigename gesetzt wird.
-- `Thread.content` hat in Prisma einen Default, damit alte lokale Testdaten migrierbar bleiben.
+- `Thread.content` hat in Prisma einen Default, damit alte lokale Testdaten leichter migrierbar bleiben.
+- Supabase wird ueber Prisma angebunden, nicht ueber direkten Browserzugriff. Dadurch bleiben Datenbankzugriffe serverseitig.
 
 ## Noch offen fuer Praktikum 9
 
@@ -49,7 +53,8 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 
 - Moderations-/Postfilter fuer gesperrte Begriffe und Codes.
 - Echte Bildanhaenge statt Bild-URLs.
-- Pixel-Place funktional machen.
+- `DATABASE_URL` lokal und in Vercel eintragen.
+- Postgres-Baseline-Migration gegen Supabase ausfuehren.
 - README bei groesseren Projektentscheidungen aktuell halten.
 
 ## Assets
