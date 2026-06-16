@@ -13,20 +13,43 @@ datasource db {
 }
 
 model Thread {
-  id        Int      @id @default(autoincrement())
-  title     String
-  imageUrl  String?
-  createdAt DateTime @default(now())
-  posts     Post[]
+  id         Int      @id @default(autoincrement())
+  title      String
+  content    String   @default("")
+  authorName String   @default("Anonymous")
+  createdAt  DateTime @default(now())
+  userId     Int?
+  posts      Post[]
+  user       User?    @relation(fields: [userId], references: [id])
 }
 
 model Post {
+  id         Int      @id @default(autoincrement())
+  content    String
+  authorName String   @default("Anonymous")
+  createdAt  DateTime @default(now())
+  threadId   Int
+  userId     Int?
+  thread     Thread   @relation(fields: [threadId], references: [id])
+  user       User?    @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  username     String    @unique
+  passwordHash String
+  createdAt    DateTime  @default(now())
+  sessions     Session[]
+  threads      Thread[]
+  posts        Post[]
+}
+
+model Session {
   id        Int      @id @default(autoincrement())
-  content   String
-  imageUrl  String?
+  token     String   @unique
   createdAt DateTime @default(now())
-  threadId  Int
-  thread    Thread   @relation(fields: [threadId], references: [id])
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Pixel {

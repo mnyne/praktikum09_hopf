@@ -49,6 +49,8 @@
 }
 
 :root {
+  --font-geist-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -126,5 +128,13 @@
   }
   html {
     @apply font-mono;
+  }
+}
+
+@layer utilities {
+  .bg-redcanvas {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.62)),
+      url("/backgrounds/redcanvas-bg.png") center / cover fixed;
   }
 }
