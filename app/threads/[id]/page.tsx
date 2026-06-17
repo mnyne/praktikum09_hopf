@@ -47,7 +47,7 @@ export default async function ThreadDetailPage({
           <CardTitle>{thread.title}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4 text-sm">
-          <p className="whitespace-pre-wrap text-zinc-800">
+          <p className="whitespace-pre-wrap text-zinc-300">
             {thread.content}
           </p>
 
@@ -63,7 +63,7 @@ export default async function ThreadDetailPage({
 
         {thread.posts.length === 0 ? (
           <Card>
-            <CardContent className="py-6 text-sm text-zinc-600">
+            <CardContent className="py-6 text-sm text-zinc-300">
               Noch keine Antworten vorhanden.
             </CardContent>
           </Card>
@@ -71,7 +71,7 @@ export default async function ThreadDetailPage({
           thread.posts.map((post) => (
             <Card key={post.id}>
               <CardContent className="space-y-3 py-4 text-sm">
-                <p className="whitespace-pre-wrap text-zinc-800">
+                <p className="whitespace-pre-wrap text-zinc-300">
                   {post.content}
                 </p>
 

@@ -48,7 +48,7 @@ export function PostForm({
           <CardTitle>Antwort schreiben</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm leading-6 text-zinc-600">
+          <p className="text-sm leading-6 text-zinc-300">
             Zum Antworten brauchst du einen Anzeigenamen mit Passwort.
           </p>
           <Button asChild>
@@ -85,7 +85,7 @@ export function PostForm({
           >
             <input type="hidden" name="threadId" value={threadId} />
 
-            <p className="text-xs text-zinc-600">
+            <p className="text-xs text-zinc-500">
               Du antwortest als{" "}
               <span className="font-medium">{currentUserName}</span>.
             </p>
