@@ -12,39 +12,39 @@ export default function Home() {
             RedCanvas
           </p>
           <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
-            Ein anonymes Community-Board fuer Diskussionen und kollaborative
+            Ein anonymes Community-Board für Diskussionen und kollaborative
             Pixelkunst.
           </h1>
           <p className="text-sm leading-6 text-zinc-100">
-            RedCanvas entsteht als Gruppenprojekt im Praktikum. Der erste
-            Bereich ist ein textbasiertes Imageboard mit gesicherten
-            Anzeigenamen ohne E-Mail oder Telefonnummer. Spaeter folgen
-            Bildanhaenge, Moderation und ein gemeinsames Pixel-Canvas im Stil
-            von r/place.
+            RedCanvas entsteht als Gruppenprojekt im Praktikum. Die eine
+            Hälfte ist ein textbasiertes Imageboard mit gesicherten
+            Anzeigenamen ohne E-Mail oder Telefonnummer. Die zweite Hälfte ist
+            eine gemeinsame Canvas, auf der Pixel gesetzt werden koennen.
+            Später folgen Bildanhänge und Moderation.
           </p>
           <div className="flex flex-wrap gap-3">
             <Button asChild>
-              <Link href="/threads">Threads oeffnen</Link>
-            </Button>
-            <Button asChild variant="secondary">
               <Link href="/auth">Namen sichern</Link>
+            </Button>
+            <Button asChild>
+              <Link href="/about">Mehr erfahren</Link>
             </Button>
           </div>
         </div>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-2">
+      <section className="home-feature-grid grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle>Imageboard</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm leading-6 text-zinc-600">
-              Erstelle Threads und Antworten unter einem gesicherten
-              Anzeigenamen, ohne E-Mail, Telefonnummer oder Profilzwang.
+            <p className="text-sm leading-6 text-zinc-400">
+              Starte Diskussionen, sammle Gedanken und antworte frei unter
+              deinem gesicherten Anzeigenamen, ohne Profilzwang.
             </p>
             <Button asChild>
-              <Link href="/threads">Threads oeffnen</Link>
+              <Link href="/threads">Threads öffnen</Link>
             </Button>
           </CardContent>
         </Card>
@@ -54,9 +54,10 @@ export default function Home() {
             <CardTitle>Pixel-Place</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm leading-6 text-zinc-600">
-              Die Canvas-Seite ist vorbereitet. Im naechsten Schritt wird
-              daraus eine gemeinsame Flaeche, auf der Pixel gesetzt werden.
+            <p className="text-sm leading-6 text-zinc-400">
+              Leb deine Kreativität gemeinsam mit anderen aus: setze Pixel,
+              hinterlasse Spuren und bau Stück für Stück am gemeinsamen
+              Canvas mit.
             </p>
             <Button asChild variant="outline">
               <Link href="/place">Place ansehen</Link>

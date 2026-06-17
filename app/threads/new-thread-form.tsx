@@ -51,7 +51,7 @@ export function NewThreadForm({
           <CardTitle>Neuen Thread erstellen</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm leading-6 text-zinc-600">
+          <p className="text-sm leading-6 text-zinc-400">
             Zum Posten brauchst du einen Anzeigenamen mit Passwort.
           </p>
           <Button asChild>

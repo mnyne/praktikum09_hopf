@@ -18,7 +18,7 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - react-hook-form und zodResolver sind in den Formularen eingebunden.
 - Basisnavigation mit Startseite, `/threads` und `/place`.
 - Prisma-Modelle fuer `Thread`, `Post` und `Pixel`.
-- Imageboard-Branch `feature/imageboard`.
+- Aktueller Praktikum-11-Stand baut auf Imageboard, Pixel-Place und PR10-Deployment auf.
 - `/threads` zeigt echte Threads aus Prisma.
 - Neue Threads koennen erstellt werden.
 - Threads haben Titel, Inhalt und einen gesicherten Anzeigenamen.
@@ -32,6 +32,13 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - Pixel setzen erfordert denselben Login wie das Imageboard.
 - Die alten SQLite-Migrationen wurden durch eine Postgres-Baseline-Migration ersetzt.
 - `.env.example` dokumentiert die benoetigten Supabase/Vercel-Variablen.
+- Open Graph Metadata und ein generiertes OG-Bild existieren.
+- Vercel Web Analytics ist eingebunden.
+- Der Background wird als komprimiertes WebP ausgeliefert.
+- Lighthouse Performance Audit wurde dokumentiert.
+- About-Seite unter `/about` beschreibt Projektidee und Haltung.
+- Theme-Switcher mit `Current` und `Polished` existiert.
+- `Polished` nutzt einen Industrial/Lost-Place-Look mit Pride-Gradient-Akzenten.
 
 ## Bewusste Entscheidungen
 
@@ -42,19 +49,20 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - `Thread.content` hat in Prisma einen Default, damit alte lokale Testdaten leichter migrierbar bleiben.
 - Supabase wird ueber Prisma angebunden, nicht ueber direkten Browserzugriff. Dadurch bleiben Datenbankzugriffe serverseitig.
 
-## Noch offen fuer Praktikum 9
+## Noch offen fuer Praktikum 11
 
-- Commit erstellen, falls die aktuellen Aenderungen noch nicht committed sind.
 - Branch pushen.
 - Pull Request mit Beschreibung oeffnen.
 - Gegenseitiges Review durchfuehren.
+- Screenshots fuer README/PR-Beschreibung aufnehmen.
+- Nach dem naechsten Vercel-Deploy Lighthouse erneut pruefen.
+- Kurze Praesentationsnotizen und Teambeitraege abstimmen.
 
 ## Naechste sinnvolle Features
 
 - Moderations-/Postfilter fuer gesperrte Begriffe und Codes.
 - Echte Bildanhaenge statt Bild-URLs.
-- `DATABASE_URL` lokal und in Vercel eintragen.
-- Postgres-Baseline-Migration gegen Supabase ausfuehren.
+- UX-Polish, Edge Cases und responsive Feinschliff weiter pruefen.
 - README bei groesseren Projektentscheidungen aktuell halten.
 
 ## Assets
@@ -65,10 +73,10 @@ Backgrounds und andere statische Dateien gehoeren nach:
 public/backgrounds/
 ```
 
-Eine Datei `public/backgrounds/redcanvas-bg.png` waere im Browser erreichbar unter:
+Die aktive Background-Datei liegt unter:
 
 ```txt
-/backgrounds/redcanvas-bg.png
+public/backgrounds/redcanvas-bg.webp
 ```
 
 Das Navigationslogo liegt unter:

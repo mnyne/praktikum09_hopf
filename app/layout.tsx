@@ -1,16 +1,45 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { logout } from "@/app/auth/actions";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 import { getCurrentUser } from "@/lib/auth";
 
+const siteUrl = "https://praktikum09-hopf.vercel.app";
+const siteDescription =
+  "An anonymous community board with threads and a shared pixel canvas.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "RedCanvas",
-  description: "Community board with threads and a shared pixel canvas",
+  description: siteDescription,
   icons: {
     icon: [{ url: "/favicon.ico?v=2", type: "image/x-icon" }],
     shortcut: [{ url: "/favicon.ico?v=2", type: "image/x-icon" }],
+  },
+  openGraph: {
+    title: "RedCanvas",
+    description: siteDescription,
+    url: siteUrl,
+    siteName: "RedCanvas",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "RedCanvas preview",
+      },
+    ],
+    locale: "de_DE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "RedCanvas",
+    description: siteDescription,
+    images: ["/opengraph-image"],
   },
 };
 
@@ -28,9 +57,9 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/favicon.ico?v=2" />
       </head>
       <body className="min-h-full bg-redcanvas text-zinc-950">
-        <header className="border-b border-white/20 bg-white/90 backdrop-blur">
-          <nav className="mx-auto flex max-w-5xl items-center gap-6 px-6 py-4">
-            <Link href="/" className="flex items-center gap-2 font-bold">
+        <header className="site-header border-b border-white/20 bg-white/90 backdrop-blur">
+          <nav className="site-nav mx-auto flex max-w-5xl items-center gap-6 px-6 py-4">
+            <Link href="/" className="brand-mark flex items-center gap-2 font-bold">
               <Image
                 src="/redcanvas-logo.png"
                 alt=""
@@ -39,19 +68,20 @@ export default function RootLayout({
                 priority
                 className="h-9 w-auto"
               />
-              <span>RedCanvas</span>
             </Link>
-            <Link href="/threads" className="text-sm text-zinc-600 hover:text-zinc-950">
+            <Link href="/threads" className="nav-link text-sm text-zinc-300 hover:text-zinc-950">
               Threads
             </Link>
-            <Link href="/place" className="text-sm text-zinc-600 hover:text-zinc-950">
+            <Link href="/place" className="nav-link text-sm text-zinc-300 hover:text-zinc-950">
               Place
             </Link>
+            <ThemeSwitcher />
             <AuthNav userPromise={userPromise} />
           </nav>
         </header>
 
         <main className="mx-auto w-full max-w-5xl px-6 py-8">{children}</main>
+        <Analytics />
       </body>
     </html>
   );
@@ -68,7 +98,7 @@ async function AuthNav({
     return (
       <Link
         href="/auth"
-        className="ml-auto text-sm text-zinc-600 hover:text-zinc-950"
+        className="auth-link ml-auto text-sm text-zinc-300 hover:text-zinc-950"
       >
         Login
       </Link>
@@ -76,10 +106,10 @@ async function AuthNav({
   }
 
   return (
-    <div className="ml-auto flex items-center gap-3 text-sm">
-      <span className="text-zinc-600">{user.username}</span>
+    <div className="auth-link ml-auto flex items-center gap-3 text-sm">
+      <span className="text-zinc-300">{user.username}</span>
       <form action={logout}>
-        <button className="text-zinc-600 hover:text-zinc-950" type="submit">
+        <button className="text-zinc-300 hover:text-zinc-950" type="submit">
           Logout
         </button>
       </form>

@@ -55,32 +55,47 @@ Bewusste Entscheidung:
 
 ## Performance / Lighthouse
 
-Nach dem Deployment:
-
-1. Deployed URL in Chrome oeffnen.
-2. DevTools -> Lighthouse.
-3. Modus: Navigation.
-4. Kategorie: Performance.
-5. Geraet: Mobile.
-6. Ziel: Score 80+.
-
-Zu dokumentieren:
+Audit vom 2026-06-16:
 
 ```txt
-URL:
-Datum:
-Score vorher:
-Top 3 Issues:
-Fixes:
-Score nachher:
+URL: https://praktikum09-hopf.vercel.app
+Tool: Lighthouse CLI 13.4.0 mit Microsoft Edge
+Kategorie: Performance
+Mobile Score: 99
+Desktop Score: 97
 ```
 
-Moegliche Fixes:
+Mobile-Metriken:
 
-- Bilder weiter komprimieren.
-- Unnoetige JS-Imports entfernen.
-- Layout-Shift durch feste Groessen vermeiden.
-- Background/Logo-Dateien bei Bedarf optimieren.
+```txt
+First Contentful Paint: 0.9 s
+Largest Contentful Paint: 1.8 s
+Total Blocking Time: 110 ms
+Cumulative Layout Shift: 0
+Speed Index: 2.1 s
+```
+
+Top-Hinweise:
+
+- Hintergrundbild war zu gross.
+- Etwas ungenutztes JavaScript bleibt uebrig.
+- Legacy-JavaScript-Hinweis durch Browser-Kompatibilitaets-Bundles.
+
+Fixes:
+
+- Background von `redcanvas-bg.png` auf komprimiertes WebP umgestellt.
+- Open Graph Metadata und generiertes OG-Bild ergaenzt.
+- Vercel Web Analytics eingebunden.
+
+Reports:
+
+```txt
+reports/lighthouse-pr10-mobile.json
+reports/lighthouse-pr10.json
+```
+
+Nach dem naechsten Vercel-Deploy sollte der Audit erneut ausgefuehrt werden,
+weil die WebP-Optimierung erst dann live wirksam ist.
 
 ## Praktikum-10-Branch
 
@@ -98,6 +113,9 @@ Inhalt:
 - Loading- und Error-State wurden ergaenzt.
 - Prisma wurde von SQLite auf PostgreSQL/Supabase vorbereitet.
 - Eine Postgres-Baseline-Migration ersetzt die alten SQLite-Migrationen.
+- Open Graph Metadata und ein generiertes OG-Bild wurden ergaenzt.
+- Vercel Web Analytics wurde eingebunden.
+- Der grosse PNG-Background wurde durch eine WebP-Variante ersetzt.
 - GitHub Actions CI wird nicht genutzt, weil das Repository privat ist.
 
 ## Vor Pull Request
