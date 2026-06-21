@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "redcanvas-theme";
 
-type Theme = "current" | "polished" | "mid-2000s";
+type Theme = "current" | "polished" | "2010s";
 
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.redcanvasTheme = theme;
@@ -18,7 +18,7 @@ export function ThemeSwitcher() {
 
     const storedTheme = window.localStorage.getItem(STORAGE_KEY);
     return storedTheme === "polished" ||
-      storedTheme === "mid-2000s" ||
+      storedTheme === "2010s" ||
       storedTheme === "current"
       ? storedTheme
       : "current";
@@ -30,7 +30,7 @@ export function ThemeSwitcher() {
 
   function handleThemeChange(value: string) {
     const nextTheme: Theme =
-      value === "polished" || value === "mid-2000s" ? value : "current";
+      value === "polished" || value === "2010s" ? value : "current";
     setTheme(nextTheme);
     window.localStorage.setItem(STORAGE_KEY, nextTheme);
     applyTheme(nextTheme);
@@ -46,7 +46,7 @@ export function ThemeSwitcher() {
       >
         <option value="current">Current</option>
         <option value="polished">Polished</option>
-        <option value="mid-2000s">Mid-2000s</option>
+        <option value="2010s">2010s</option>
       </select>
     </label>
   );

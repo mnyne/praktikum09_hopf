@@ -1,6 +1,6 @@
 "use client";
 
-import type { KeyboardEventHandler } from "react";
+import { memo, type KeyboardEventHandler } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -17,7 +17,7 @@ type PixelComponentProps = {
   onClick: () => void;
 };
 
-export default function PixelComponent({
+function PixelComponent({
   id,
   x,
   y,
@@ -53,3 +53,15 @@ export default function PixelComponent({
     />
   );
 }
+
+export default memo(PixelComponent, (previous, next) => {
+  return (
+    previous.id === next.id &&
+    previous.x === next.x &&
+    previous.y === next.y &&
+    previous.color === next.color &&
+    previous.selected === next.selected &&
+    previous.disabled === next.disabled &&
+    previous.tabIndex === next.tabIndex
+  );
+});
