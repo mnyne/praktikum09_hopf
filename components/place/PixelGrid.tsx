@@ -1,9 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState, useTransition } from "react";
+import {
+  useEffect,
+  useMemo,
+  useState,
+  useTransition,
+  type KeyboardEvent,
+} from "react";
 import { setPixelColor } from "@/app/place/actions";
 import { Button } from "@/components/ui/button";
+import { StatusMessage } from "@/components/ui/status-message";
 import ColorPicker from "@/components/place/ColorPicker";
 import PixelComponent from "@/components/place/PixelComponent";
 import { getSupabaseBrowserClient } from "@/lib/supabase-browser";
@@ -12,6 +19,11 @@ import type { PixelDTO } from "@/src/place_types";
 type SelectedPixel = {
   x: number;
   y: number;
+};
+
+type PixelFeedback = {
+  type: "success" | "error";
+  message: string;
 };
 
 const GRID_SIZE = 100;
@@ -26,6 +38,8 @@ export default function PixelGrid({
 }) {
   const [pixelMap, setPixelMap] = useState(() => createPixelMap(pixels));
   const [selectedPixel, setSelectedPixel] = useState<SelectedPixel | null>(null);
+  const [focusedPixel, setFocusedPixel] = useState<SelectedPixel>({ x: 0, y: 0 });
+  const [feedback, setFeedback] = useState<PixelFeedback | null>(null);
   const [isPending, startTransition] = useTransition();
   const canPaint = Boolean(currentUserName);
 
@@ -90,6 +104,7 @@ export default function PixelGrid({
     if (!selectedPixel) return;
 
     const { x, y } = selectedPixel;
+    setFeedback(null);
 
     startTransition(async () => {
       const previousMap = pixelMap;
@@ -115,10 +130,52 @@ export default function PixelGrid({
         });
 
         setSelectedPixel(null);
+        setFeedback({
+          type: "success",
+          message: `Pixel ${x}, ${y} erfolgreich gesetzt!`,
+        });
       } catch (error) {
         setPixelMap(previousMap);
+        setFeedback({
+          type: "error",
+          message:
+            error instanceof Error
+              ? error.message
+              : "Pixel konnte nicht gesetzt werden.",
+        });
         console.error(error);
       }
+    });
+  }
+
+  function handlePixelKeyDown(
+    event: KeyboardEvent<HTMLButtonElement>,
+    x: number,
+    y: number
+  ) {
+    let nextPixel: SelectedPixel | null = null;
+
+    switch (event.key) {
+      case "ArrowLeft":
+        nextPixel = { x: Math.max(0, x - 1), y };
+        break;
+      case "ArrowRight":
+        nextPixel = { x: Math.min(GRID_SIZE - 1, x + 1), y };
+        break;
+      case "ArrowUp":
+        nextPixel = { x, y: Math.max(0, y - 1) };
+        break;
+      case "ArrowDown":
+        nextPixel = { x, y: Math.min(GRID_SIZE - 1, y + 1) };
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    setFocusedPixel(nextPixel);
+    requestAnimationFrame(() => {
+      document.getElementById(getPixelId(nextPixel.x, nextPixel.y))?.focus();
     });
   }
 
@@ -149,8 +206,23 @@ export default function PixelGrid({
         ) : null}
       </div>
 
+      {feedback ? (
+        feedback.type === "success" ? (
+          <StatusMessage>{feedback.message}</StatusMessage>
+        ) : (
+          <p
+            role="alert"
+            className="border border-red-500/60 bg-red-950/85 px-4 py-3 text-sm font-medium text-red-50"
+          >
+            {feedback.message}
+          </p>
+        )
+      ) : null}
+
       <div className="w-full overflow-auto rounded-lg border bg-muted/30 p-4">
         <div
+          role="group"
+          aria-label="Pixel-Leinwand. Mit Pfeiltasten zwischen Pixeln navigieren."
           className="grid origin-top-left"
           style={{
             gridTemplateColumns: `repeat(${GRID_SIZE}, minmax(0, 1fr))`,
@@ -164,13 +236,18 @@ export default function PixelGrid({
             return (
               <PixelComponent
                 key={`${x}-${y}`}
+                id={getPixelId(x, y)}
                 x={x}
                 y={y}
                 color={pixel?.color ?? DEFAULT_COLOR}
                 selected={selectedPixel?.x === x && selectedPixel?.y === y}
                 disabled={!canPaint}
+                tabIndex={focusedPixel.x === x && focusedPixel.y === y ? 0 : -1}
+                onFocus={() => setFocusedPixel({ x, y })}
+                onKeyDown={(event) => handlePixelKeyDown(event, x, y)}
                 onClick={() => {
                   if (canPaint) {
+                    setFocusedPixel({ x, y });
                     setSelectedPixel({ x, y });
                   }
                 }}
@@ -198,6 +275,10 @@ function createPixelMap(pixels: PixelDTO[]) {
   }
 
   return map;
+}
+
+function getPixelId(x: number, y: number) {
+  return `pixel-${x}-${y}`;
 }
 
 function parseRealtimePixel(row: unknown): PixelDTO | null {

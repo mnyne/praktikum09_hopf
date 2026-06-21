@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { startTransition, useActionState } from "react";
+import { startTransition, useActionState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+import { StatusMessage } from "@/components/ui/status-message";
 import { CreatePostSchema, type CreatePostInput } from "@/schemas/thread";
 import { createPost, type FormState } from "../actions";
 
@@ -40,6 +41,12 @@ export function PostForm({
       content: "",
     },
   });
+
+  useEffect(() => {
+    if (state.success) {
+      form.reset();
+    }
+  }, [form, state.success]);
 
   if (!currentUserName) {
     return (
@@ -67,6 +74,7 @@ export function PostForm({
       <CardContent>
         <Form {...form}>
           <form
+            aria-busy={pending}
             onSubmit={async (event) => {
               event.preventDefault();
               const formElement = event.currentTarget;
@@ -116,9 +124,13 @@ export function PostForm({
             />
 
             {state.message ? (
-              <p className="text-xs text-zinc-600" aria-live="polite">
-                {state.message}
-              </p>
+              state.success ? (
+                <StatusMessage>{state.message}</StatusMessage>
+              ) : (
+                <p className="text-xs text-red-700" role="alert">
+                  {state.message}
+                </p>
+              )
             ) : null}
 
             <Button type="submit" disabled={pending}>

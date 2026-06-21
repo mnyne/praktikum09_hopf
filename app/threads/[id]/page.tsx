@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { StatusMessage } from "@/components/ui/status-message";
 import { ThreadsRealtimeRefresh } from "@/components/threads/ThreadsRealtimeRefresh";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
@@ -11,12 +13,14 @@ export const dynamic = "force-dynamic";
 
 type ThreadDetailPageProps = {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ notice?: string }>;
 };
 
 export default async function ThreadDetailPage({
   params,
+  searchParams,
 }: ThreadDetailPageProps) {
-  const { id } = await params;
+  const [{ id }, { notice }] = await Promise.all([params, searchParams]);
   const threadId = Number(id);
   const currentUser = await getCurrentUser();
 
@@ -40,9 +44,12 @@ export default async function ThreadDetailPage({
   return (
     <div className="space-y-6">
       <ThreadsRealtimeRefresh threadId={thread.id} />
-      <Link href="/threads" className="text-sm text-red-700 hover:underline">
-        Zurueck zu allen Threads
-      </Link>
+      {notice === "thread-created" ? (
+        <StatusMessage>Thread erfolgreich erstellt!</StatusMessage>
+      ) : null}
+      <Button asChild variant="outline">
+        <Link href="/threads">Zurueck zu allen Threads</Link>
+      </Button>
 
       <Card>
         <CardHeader>

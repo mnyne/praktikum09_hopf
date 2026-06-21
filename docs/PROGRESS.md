@@ -41,6 +41,11 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - `Polished` nutzt einen Industrial/Lost-Place-Look mit Pride-Gradient-Akzenten.
 - Pixel-Place aktualisiert neue Pixel live ueber Supabase Realtime.
 - Thread-Uebersicht und Thread-Detailseiten aktualisieren neue Threads und Antworten live.
+- Datenrouten besitzen Loading-Skeletons und Formulare zeigen Pending-Zustaende.
+- Erfolgsfeedback existiert fuer Auth, Threads, Antworten und gesetzte Pixel.
+- Thread-Vorschauen sind auf zehn Zeilen begrenzt und besitzen klare Detail-Buttons.
+- Tab-Navigation wurde mit Skip-Link, Fokuszustaenden und Pfeiltasten-Navigation im Pixel-Grid verbessert.
+- Threadliste, Navigation, Farbauswahl und Hauptlayouts sind responsiv aufgebaut.
 
 ## Bewusste Entscheidungen
 

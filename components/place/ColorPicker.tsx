@@ -40,8 +40,8 @@ export default function ColorPicker({
           <DialogTitle>Farbe auswählen</DialogTitle>
         </DialogHeader>
 
-        <div className="grid grid-cols-[1fr_auto] gap-4">
-          <div className="grid grid-cols-8 gap-2">
+        <div className="grid gap-4 sm:grid-cols-[1fr_auto]">
+          <div className="grid grid-cols-4 gap-2 sm:grid-cols-8">
             {PLACE_COLORS.map((color) => (
               <button
                 key={color}
@@ -57,13 +57,13 @@ export default function ColorPicker({
             ))}
           </div>
 
-          <div className="flex min-w-28 flex-col gap-2">
+          <div className="flex gap-2 sm:min-w-28 sm:flex-col">
             <Button
               type="button"
               disabled={pending}
               onClick={() => onConfirm(selectedColor)}
             >
-              Bestätigen
+              {pending ? "Setzt..." : "Bestätigen"}
             </Button>
 
             <Button

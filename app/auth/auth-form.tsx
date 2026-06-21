@@ -55,6 +55,7 @@ export function AuthForm() {
         <CardContent>
           <Form {...loginForm}>
             <form
+              aria-busy={loginPending}
               onSubmit={async (event) => {
                 event.preventDefault();
                 const formElement = event.currentTarget;
@@ -87,6 +88,7 @@ export function AuthForm() {
         <CardContent>
           <Form {...registerForm}>
             <form
+              aria-busy={registerPending}
               onSubmit={async (event) => {
                 event.preventDefault();
                 const formElement = event.currentTarget;

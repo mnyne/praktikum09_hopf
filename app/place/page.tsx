@@ -9,7 +9,7 @@ export default async function PlacePage() {
   const pixels = await getVisiblePixels();
 
   return (
-    <main className="mx-auto flex max-w-6xl flex-col gap-4 p-6">
+    <div className="mx-auto flex max-w-6xl flex-col gap-4">
       <div>
         <h1 className="text-3xl font-bold">Place</h1>
         <p className="text-muted-foreground">
@@ -21,6 +21,6 @@ export default async function PlacePage() {
         pixels={pixels}
         currentUserName={currentUser?.username ?? null}
       />
-    </main>
+    </div>
   );
 }
