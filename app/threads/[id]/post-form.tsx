@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { startTransition, useActionState } from "react";
+import { startTransition, useActionState, useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -16,6 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+import { StatusMessage } from "@/components/ui/status-message";
 import { CreatePostSchema, type CreatePostInput } from "@/schemas/thread";
 import { createPost, type FormState } from "../actions";
 
@@ -41,6 +42,12 @@ export function PostForm({
     },
   });
 
+  useEffect(() => {
+    if (state.success) {
+      form.reset();
+    }
+  }, [form, state.success]);
+
   if (!currentUserName) {
     return (
       <Card>
@@ -48,7 +55,7 @@ export function PostForm({
           <CardTitle>Antwort schreiben</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm leading-6 text-zinc-600">
+          <p className="text-sm leading-6 text-zinc-300">
             Zum Antworten brauchst du einen Anzeigenamen mit Passwort.
           </p>
           <Button asChild>
@@ -67,6 +74,7 @@ export function PostForm({
       <CardContent>
         <Form {...form}>
           <form
+            aria-busy={pending}
             onSubmit={async (event) => {
               event.preventDefault();
               const formElement = event.currentTarget;
@@ -85,7 +93,7 @@ export function PostForm({
           >
             <input type="hidden" name="threadId" value={threadId} />
 
-            <p className="text-xs text-zinc-600">
+            <p className="text-xs text-zinc-500">
               Du antwortest als{" "}
               <span className="font-medium">{currentUserName}</span>.
             </p>
@@ -116,9 +124,13 @@ export function PostForm({
             />
 
             {state.message ? (
-              <p className="text-xs text-zinc-600" aria-live="polite">
-                {state.message}
-              </p>
+              state.success ? (
+                <StatusMessage>{state.message}</StatusMessage>
+              ) : (
+                <p className="text-xs text-red-700" role="alert">
+                  {state.message}
+                </p>
+              )
             ) : null}
 
             <Button type="submit" disabled={pending}>

@@ -1,6 +1,6 @@
 # RedCanvas Progress
 
-Stand: 2026-06-16
+Stand: 2026-06-21
 
 ## Projektidee
 
@@ -39,6 +39,13 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - About-Seite unter `/about` beschreibt Projektidee und Haltung.
 - Theme-Switcher mit `Current` und `Polished` existiert.
 - `Polished` nutzt einen Industrial/Lost-Place-Look mit Pride-Gradient-Akzenten.
+- Pixel-Place aktualisiert neue Pixel live ueber Supabase Realtime.
+- Thread-Uebersicht und Thread-Detailseiten aktualisieren neue Threads und Antworten live.
+- Datenrouten besitzen Loading-Skeletons und Formulare zeigen Pending-Zustaende.
+- Erfolgsfeedback existiert fuer Auth, Threads, Antworten und gesetzte Pixel.
+- Thread-Vorschauen sind auf zehn Zeilen begrenzt und besitzen klare Detail-Buttons.
+- Tab-Navigation wurde mit Skip-Link, Fokuszustaenden und Pfeiltasten-Navigation im Pixel-Grid verbessert.
+- Threadliste, Navigation, Farbauswahl und Hauptlayouts sind responsiv aufgebaut.
 
 ## Bewusste Entscheidungen
 
@@ -47,7 +54,8 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - Bild-URLs wurden entfernt. Bilder sollen spaeter als echte Anhaenge umgesetzt werden.
 - `authorName` faellt auf `Anonymous` zurueck, wenn kein Anzeigename gesetzt wird.
 - `Thread.content` hat in Prisma einen Default, damit alte lokale Testdaten leichter migrierbar bleiben.
-- Supabase wird ueber Prisma angebunden, nicht ueber direkten Browserzugriff. Dadurch bleiben Datenbankzugriffe serverseitig.
+- Schreibende Datenbankzugriffe laufen weiter serverseitig ueber Prisma.
+- Der Supabase Browser Client wird nur fuer Realtime-Subscriptions auf neue Pixel genutzt.
 
 ## Noch offen fuer Praktikum 11
 

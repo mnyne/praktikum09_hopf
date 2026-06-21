@@ -159,6 +159,13 @@ html[data-redcanvas-theme="polished"] {
     flex-wrap: wrap;
   }
 
+  .thread-preview {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 10;
+  }
+
   .theme-switcher {
     display: inline-flex;
     align-items: center;
@@ -327,9 +334,30 @@ html[data-redcanvas-theme="polished"] {
     color: oklch(0.96 0.012 86);
   }
 
+  html[data-redcanvas-theme="polished"] .text-zinc-500 {
+    color: oklch(0.84 0.014 86);
+  }
+
+  html[data-redcanvas-theme="polished"] .text-red-200,
+  html[data-redcanvas-theme="polished"] .text-red-700,
+  html[data-redcanvas-theme="polished"] .text-red-800 {
+    color: oklch(0.72 0.18 30);
+    text-shadow: 1px 1px 0 rgb(0 0 0 / 72%);
+  }
+
+  html[data-redcanvas-theme="polished"] .text-red-200:hover,
+  html[data-redcanvas-theme="polished"] .text-red-700:hover,
+  html[data-redcanvas-theme="polished"] .text-red-800:hover {
+    color: oklch(0.8 0.2 31);
+  }
+
   html[data-redcanvas-theme="polished"] [data-slot="card-content"] p {
     color: oklch(0.98 0.012 86);
     text-shadow: 0 1px 0 rgb(0 0 0 / 72%);
+  }
+
+  html[data-redcanvas-theme="polished"] [data-slot="card-content"] p.text-zinc-500 {
+    color: oklch(0.84 0.014 86);
   }
 
   html[data-redcanvas-theme="polished"] .bg-zinc-950\/75 {

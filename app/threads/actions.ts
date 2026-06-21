@@ -9,6 +9,7 @@ import { CreatePostSchema, CreateThreadSchema } from "@/schemas/thread";
 
 export type FormState = {
   message: string;
+  success?: boolean;
   errors?: Record<string, string[] | undefined>;
 };
 
@@ -46,7 +47,7 @@ export async function createThread(
   });
 
   revalidatePath("/threads");
-  redirect(`/threads/${thread.id}`);
+  redirect(`/threads/${thread.id}?notice=thread-created`);
 }
 
 export async function createPost(
@@ -93,5 +94,5 @@ export async function createPost(
   revalidatePath("/threads");
   revalidatePath(`/threads/${threadId}`);
 
-  return { message: "Kommentar wurde erstellt." };
+  return { message: "Antwort erfolgreich erstellt!", success: true };
 }

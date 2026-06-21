@@ -47,7 +47,7 @@ export async function register(
   });
 
   await createSession(user.id);
-  redirect("/threads");
+  redirect("/threads?notice=registered");
 }
 
 export async function login(
@@ -77,7 +77,7 @@ export async function login(
   }
 
   await createSession(user.id);
-  redirect("/threads");
+  redirect("/threads?notice=logged-in");
 }
 
 export async function logout() {

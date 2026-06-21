@@ -70,6 +70,7 @@ export function NewThreadForm({
       <CardContent>
         <Form {...form}>
           <form
+            aria-busy={pending}
             onSubmit={async (event) => {
               event.preventDefault();
               const formElement = event.currentTarget;
@@ -86,7 +87,7 @@ export function NewThreadForm({
             }}
             className="space-y-4"
           >
-            <p className="text-xs text-zinc-600">
+            <p className="text-xs text-zinc-400">
               Du postest als{" "}
               <span className="font-medium">{currentUserName}</span>.
             </p>
