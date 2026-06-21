@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ThreadsRealtimeRefresh } from "@/components/threads/ThreadsRealtimeRefresh";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { PostForm } from "./post-form";
@@ -38,6 +39,7 @@ export default async function ThreadDetailPage({
 
   return (
     <div className="space-y-6">
+      <ThreadsRealtimeRefresh threadId={thread.id} />
       <Link href="/threads" className="text-sm text-red-700 hover:underline">
         Zurueck zu allen Threads
       </Link>

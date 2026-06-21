@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ThreadsRealtimeRefresh } from "@/components/threads/ThreadsRealtimeRefresh";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { NewThreadForm } from "./new-thread-form";
@@ -20,6 +21,7 @@ export default async function ThreadsPage() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
+      <ThreadsRealtimeRefresh />
       <section className="space-y-4">
         <div>
           <h1 className="text-3xl font-bold">Threads</h1>

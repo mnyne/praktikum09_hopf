@@ -23,6 +23,7 @@ Das Projekt entstand im Rahmen des Praktikums *Multimediaapplikationen/b: Full S
 - shadcn/ui
 - Prisma 7
 - PostgreSQL ueber Supabase
+- Supabase Realtime fuer Live-Updates im Pixel-Place und Imageboard
 - Zod fuer Validierung
 - react-hook-form fuer clientseitige Formulare
 - Vercel Analytics
@@ -111,12 +112,14 @@ app/
 
 components/
 ├── place/                 # PixelGrid, PixelComponent, ColorPicker
+├── threads/               # Realtime-Refresh fuer Threadseiten
 ├── ui/                    # shadcn/ui Komponenten
 └── theme-switcher.tsx     # Dropdown fuer Current/Polished Theme
 
 lib/
 ├── auth.ts                # Session-Cookies und Passwort-Hashing
 ├── prisma.ts              # Prisma Client mit PostgreSQL Adapter
+├── supabase-browser.ts    # Supabase Browser Client fuer Realtime
 └── utils.ts               # Utility-Funktionen
 
 schemas/
@@ -141,6 +144,7 @@ docs/
 * Client- und serverseitige Eingabevalidierung mit Zod
 * Gemeinsame Pixel-Leinwand für kollaborative Kunstprojekte
 * Schreibzugriff auf den Pixel-Place nur für angemeldete Nutzer
+* Live-Updates im Pixel-Place und Imageboard über Supabase Realtime
 * Umschaltbares Theme-System mit `Current` und `Polished`
 * Industrial- und Lost-Place-inspiriertes Design im `Polished` Theme
 * Automatisch generierte Open-Graph-Metadaten und Vorschaubilder

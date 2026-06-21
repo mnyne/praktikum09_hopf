@@ -1,6 +1,6 @@
 # Supabase Setup
 
-Stand: 2026-06-16
+Stand: 2026-06-21
 
 ## Was wir haben
 
@@ -47,6 +47,10 @@ Der Code ist auf PostgreSQL/Supabase vorbereitet:
 Die Server Actions muessen nicht speziell auf den Supabase SDK umgebaut werden.
 Sie schreiben weiter ueber Prisma. Sobald `DATABASE_URL` auf Supabase zeigt,
 landen Threads, Posts, Sessions und Pixel in Supabase Postgres.
+
+Der Supabase Browser Client wird nur fuer Realtime genutzt. Neue sichtbare Pixel,
+neue Threads und neue Antworten werden per Supabase Realtime an verbundene
+Browser gepusht.
 
 ## Lokale Einrichtung
 
@@ -102,6 +106,46 @@ Wichtig:
 
 - `DATABASE_URL` fuer Production, Preview und Development setzen, wenn Preview Deployments funktionieren sollen.
 - Danach Deployment neu starten, weil Vercel Environment Variables nicht rueckwirkend in laufende Builds injiziert.
+
+## Realtime fuer Pixel-Place und Threads aktivieren
+
+Damit Aufgabe 11.8 wirklich live funktioniert, muessen die Prisma-Tabellen
+`Pixel`, `Thread` und `Post` in Supabase fuer Realtime veroeffentlicht werden.
+Weil Prisma die Tabellen mit grossgeschriebenem Namen erzeugt, muessen sie im
+SQL gequotet werden:
+
+```sql
+do $$
+begin
+  alter publication supabase_realtime add table public."Pixel";
+exception
+  when duplicate_object then null;
+end $$;
+
+do $$
+begin
+  alter publication supabase_realtime add table public."Thread";
+exception
+  when duplicate_object then null;
+end $$;
+
+do $$
+begin
+  alter publication supabase_realtime add table public."Post";
+exception
+  when duplicate_object then null;
+end $$;
+```
+
+Alternativ geht es im Supabase Dashboard ueber:
+
+```txt
+Database -> Replication -> supabase_realtime -> Pixel, Thread und Post aktivieren
+```
+
+Danach zwei Browserfenster mit `/place`, `/threads` oder einem einzelnen Thread
+oeffnen. Neue Pixel, Threads und Antworten sollten im anderen Fenster ohne
+manuellen Reload erscheinen.
 
 ## Nach dem Setup pruefen
 
