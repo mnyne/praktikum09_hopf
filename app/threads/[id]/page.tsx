@@ -1,19 +1,26 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { StatusMessage } from "@/components/ui/status-message";
+import { ThreadsRealtimeRefresh } from "@/components/threads/ThreadsRealtimeRefresh";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { PostForm } from "./post-form";
 
+export const dynamic = "force-dynamic";
+
 type ThreadDetailPageProps = {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ notice?: string }>;
 };
 
 export default async function ThreadDetailPage({
   params,
+  searchParams,
 }: ThreadDetailPageProps) {
-  const { id } = await params;
+  const [{ id }, { notice }] = await Promise.all([params, searchParams]);
   const threadId = Number(id);
   const currentUser = await getCurrentUser();
 
@@ -36,16 +43,20 @@ export default async function ThreadDetailPage({
 
   return (
     <div className="space-y-6">
-      <Link href="/threads" className="text-sm text-red-700 hover:underline">
-        Zurueck zu allen Threads
-      </Link>
+      <ThreadsRealtimeRefresh threadId={thread.id} />
+      {notice === "thread-created" ? (
+        <StatusMessage>Thread erfolgreich erstellt!</StatusMessage>
+      ) : null}
+      <Button asChild variant="outline">
+        <Link href="/threads">Zurueck zu allen Threads</Link>
+      </Button>
 
       <Card>
         <CardHeader>
           <CardTitle>{thread.title}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4 text-sm">
-          <p className="whitespace-pre-wrap text-zinc-800">
+          <p className="whitespace-pre-wrap text-zinc-300">
             {thread.content}
           </p>
 
@@ -61,7 +72,7 @@ export default async function ThreadDetailPage({
 
         {thread.posts.length === 0 ? (
           <Card>
-            <CardContent className="py-6 text-sm text-zinc-600">
+            <CardContent className="py-6 text-sm text-zinc-300">
               Noch keine Antworten vorhanden.
             </CardContent>
           </Card>
@@ -69,7 +80,7 @@ export default async function ThreadDetailPage({
           thread.posts.map((post) => (
             <Card key={post.id}>
               <CardContent className="space-y-3 py-4 text-sm">
-                <p className="whitespace-pre-wrap text-zinc-800">
+                <p className="whitespace-pre-wrap text-zinc-300">
                   {post.content}
                 </p>
 

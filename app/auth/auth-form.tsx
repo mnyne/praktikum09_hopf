@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { startTransition, useActionState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type UseFormReturn } from "react-hook-form";
 
@@ -55,14 +55,20 @@ export function AuthForm() {
         <CardContent>
           <Form {...loginForm}>
             <form
-              action={async (formData) => {
+              aria-busy={loginPending}
+              onSubmit={async (event) => {
+                event.preventDefault();
+                const formElement = event.currentTarget;
                 const isValid = await loginForm.trigger();
 
                 if (!isValid) {
                   return;
                 }
 
-                loginAction(formData);
+                const formData = new FormData(formElement);
+                startTransition(() => {
+                  loginAction(formData);
+                });
               }}
               className="space-y-4"
             >
@@ -82,14 +88,20 @@ export function AuthForm() {
         <CardContent>
           <Form {...registerForm}>
             <form
-              action={async (formData) => {
+              aria-busy={registerPending}
+              onSubmit={async (event) => {
+                event.preventDefault();
+                const formElement = event.currentTarget;
                 const isValid = await registerForm.trigger();
 
                 if (!isValid) {
                   return;
                 }
 
-                registerAction(formData);
+                const formData = new FormData(formElement);
+                startTransition(() => {
+                  registerAction(formData);
+                });
               }}
               className="space-y-4"
             >

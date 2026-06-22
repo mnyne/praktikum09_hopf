@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { startTransition, useActionState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -51,7 +51,7 @@ export function NewThreadForm({
           <CardTitle>Neuen Thread erstellen</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm leading-6 text-zinc-600">
+          <p className="text-sm leading-6 text-zinc-400">
             Zum Posten brauchst du einen Anzeigenamen mit Passwort.
           </p>
           <Button asChild>
@@ -70,18 +70,24 @@ export function NewThreadForm({
       <CardContent>
         <Form {...form}>
           <form
-            action={async (formData) => {
+            aria-busy={pending}
+            onSubmit={async (event) => {
+              event.preventDefault();
+              const formElement = event.currentTarget;
               const isValid = await form.trigger();
 
               if (!isValid) {
                 return;
               }
 
-              formAction(formData);
+              const formData = new FormData(formElement);
+              startTransition(() => {
+                formAction(formData);
+              });
             }}
             className="space-y-4"
           >
-            <p className="text-xs text-zinc-600">
+            <p className="text-xs text-zinc-400">
               Du postest als{" "}
               <span className="font-medium">{currentUserName}</span>.
             </p>
