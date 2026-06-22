@@ -57,10 +57,10 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
         <link rel="shortcut icon" href="/favicon.ico?v=2" />
       </head>
-      <body className="min-h-full bg-redcanvas text-zinc-950">
+      <body className="min-h-full bg-redcanvas text-foreground">
         <a
           href="#main-content"
-          className="sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:not-sr-only focus:border focus:border-red-500 focus:bg-zinc-950 focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:not-sr-only focus:border focus:border-ring focus:bg-popover focus:px-4 focus:py-2 focus:text-popover-foreground"
         >
           Zum Inhalt springen
         </a>
@@ -76,16 +76,16 @@ export default function RootLayout({
                 className="h-9 w-auto"
               />
             </Link>
-            <Link href="/threads" className="nav-link text-sm text-zinc-300 hover:text-zinc-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-500">
+            <Link href="/threads" className="nav-link text-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring">
               Threads
             </Link>
-            <Link href="/place" className="nav-link text-sm text-zinc-300 hover:text-zinc-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-500">
+            <Link href="/place" className="nav-link text-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring">
               Place
             </Link>
             <ThemeSwitcher />
             <Suspense
               fallback={
-                <span className="auth-link ml-auto text-sm text-zinc-500">
+                <span className="auth-link ml-auto text-sm">
                   Account laedt...
                 </span>
               }
@@ -119,7 +119,7 @@ async function AuthNav({
     return (
       <Link
         href="/auth"
-        className="auth-link ml-auto text-sm text-zinc-300 hover:text-zinc-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-500"
+        className="auth-link ml-auto text-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
       >
         Login
       </Link>
@@ -128,10 +128,10 @@ async function AuthNav({
 
   return (
     <div className="auth-link ml-auto flex items-center gap-3 text-sm">
-      <span className="text-zinc-300">{user.username}</span>
+      <span>{user.username}</span>
       <form action={logout}>
         <button
-          className="text-zinc-300 hover:text-zinc-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-500"
+          className="auth-action focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
           type="submit"
         >
           Logout

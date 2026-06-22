@@ -55,7 +55,7 @@ export function PostForm({
           <CardTitle>Antwort schreiben</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm leading-6 text-zinc-300">
+          <p className="text-sm leading-6 text-muted-foreground">
             Zum Antworten brauchst du einen Anzeigenamen mit Passwort.
           </p>
           <Button asChild>
@@ -93,7 +93,7 @@ export function PostForm({
           >
             <input type="hidden" name="threadId" value={threadId} />
 
-            <p className="text-xs text-zinc-500">
+            <p className="text-xs text-muted-foreground">
               Du antwortest als{" "}
               <span className="font-medium">{currentUserName}</span>.
             </p>
@@ -115,7 +115,7 @@ export function PostForm({
                   </FormControl>
                   <FormMessage />
                   {state.errors?.content ? (
-                    <p className="text-xs text-red-700">
+                    <p className="text-xs text-destructive">
                       {state.errors.content[0]}
                     </p>
                   ) : null}
@@ -127,7 +127,7 @@ export function PostForm({
               state.success ? (
                 <StatusMessage>{state.message}</StatusMessage>
               ) : (
-                <p className="text-xs text-red-700" role="alert">
+                <p className="text-xs text-destructive" role="alert">
                   {state.message}
                 </p>
               )
