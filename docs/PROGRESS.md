@@ -1,6 +1,6 @@
 # RedCanvas Progress
 
-Stand: 2026-06-21
+Stand: 2026-06-22
 
 ## Projektidee
 
@@ -46,6 +46,7 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - Thread-Vorschauen sind auf zehn Zeilen begrenzt und besitzen klare Detail-Buttons.
 - Tab-Navigation wurde mit Skip-Link, Fokuszustaenden und Pfeiltasten-Navigation im Pixel-Grid verbessert.
 - Threadliste, Navigation, Farbauswahl und Hauptlayouts sind responsiv aufgebaut.
+- Theme-abhaengige Text-, Status- und Navigationsfarben laufen ueber semantische Tokens in `app/globals.css`; Komponenten enthalten keine `Polished`-spezifischen Kontrastfarben mehr.
 
 ## Bewusste Entscheidungen
 
@@ -56,6 +57,11 @@ RedCanvas ist ein anonymes Community-Board mit zwei Bereichen:
 - `Thread.content` hat in Prisma einen Default, damit alte lokale Testdaten leichter migrierbar bleiben.
 - Schreibende Datenbankzugriffe laufen weiter serverseitig ueber Prisma.
 - Der Supabase Browser Client wird nur fuer Realtime-Subscriptions auf neue Pixel genutzt.
+
+## Verifikation
+
+- Build-, Dev-Server- und Browser-Tests fuehrt der Nutzer lokal aus. Wiederholte automatisierte Versuche in der Agent-Umgebung koennen durch Localhost-/Supabase-Einschraenkungen haengen oder unnoetige Schleifen verursachen.
+- Der Agent beschraenkt sich deshalb ohne ausdrueckliche Aufforderung auf einmalige statische Checks wie Diff-, Lint- oder Quellcode-Pruefungen.
 
 ## Noch offen fuer Praktikum 11
 

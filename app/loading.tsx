@@ -3,7 +3,7 @@ export default function Loading() {
     <div
       role="status"
       aria-label="Seite wird geladen"
-      className="space-y-4 border bg-white/80 p-6 text-sm text-zinc-700 shadow-sm backdrop-blur"
+      className="space-y-4 border bg-white/80 p-6 text-sm text-foreground shadow-sm backdrop-blur"
     >
       <span className="sr-only">Seite wird geladen...</span>
       <div className="h-5 w-40 animate-pulse bg-zinc-300" aria-hidden="true" />

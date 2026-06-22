@@ -39,14 +39,14 @@ export default async function ThreadsPage({
         ) : null}
         <div>
           <h1 className="text-3xl font-bold">Threads</h1>
-          <p className="mt-2 text-sm text-zinc-400">
+          <p className="mt-2 text-sm text-muted-foreground">
             Anonyme Diskussionen mit frei waehlbarem Anzeigenamen.
           </p>
         </div>
 
         {threads.length === 0 ? (
           <Card>
-            <CardContent className="py-8 text-sm text-zinc-300">
+            <CardContent className="py-8 text-sm text-card-foreground">
               Noch keine Threads vorhanden.
             </CardContent>
           </Card>
@@ -55,24 +55,24 @@ export default async function ThreadsPage({
             {threads.map((thread) => (
               <Card key={thread.id}>
                 <CardHeader>
-                  <CardTitle className="text-lg text-red-200">
+                  <CardTitle className="thread-title text-lg">
                     <Link
                       href={`/threads/${thread.id}`}
-                      className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-500"
+                      className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
                     >
                       {thread.title}
                     </Link>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-2 text-sm text-zinc-300">
-                  <p className="thread-preview whitespace-pre-wrap text-zinc-300">
+                <CardContent className="space-y-2 text-sm">
+                  <p className="thread-preview whitespace-pre-wrap text-card-foreground">
                     {thread.content}
                   </p>
                   <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
                     <Button asChild size="sm">
                       <Link href={`/threads/${thread.id}`}>Mitreden</Link>
                     </Button>
-                    <p className="text-xs text-zinc-500">
+                    <p className="text-xs text-muted-foreground">
                       {thread.authorName} - {thread._count.posts} Antworten -{" "}
                       {thread.createdAt.toLocaleString("de-DE")}
                     </p>

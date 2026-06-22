@@ -51,7 +51,7 @@ export function NewThreadForm({
           <CardTitle>Neuen Thread erstellen</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm leading-6 text-zinc-400">
+          <p className="text-sm leading-6 text-muted-foreground">
             Zum Posten brauchst du einen Anzeigenamen mit Passwort.
           </p>
           <Button asChild>
@@ -87,7 +87,7 @@ export function NewThreadForm({
             }}
             className="space-y-4"
           >
-            <p className="text-xs text-zinc-400">
+            <p className="text-xs text-muted-foreground">
               Du postest als{" "}
               <span className="font-medium">{currentUserName}</span>.
             </p>
@@ -109,7 +109,7 @@ export function NewThreadForm({
                   </FormControl>
                   <FormMessage />
                   {state.errors?.title ? (
-                    <p className="text-xs text-red-700">
+                    <p className="text-xs text-destructive">
                       {state.errors.title[0]}
                     </p>
                   ) : null}
@@ -134,7 +134,7 @@ export function NewThreadForm({
                   </FormControl>
                   <FormMessage />
                   {state.errors?.content ? (
-                    <p className="text-xs text-red-700">
+                    <p className="text-xs text-destructive">
                       {state.errors.content[0]}
                     </p>
                   ) : null}
@@ -143,7 +143,7 @@ export function NewThreadForm({
             />
 
             {state.message ? (
-              <p className="text-xs text-red-700" aria-live="polite">
+              <p className="text-xs text-destructive" aria-live="polite">
                 {state.message}
               </p>
             ) : null}

@@ -143,7 +143,7 @@ function AuthFields({
             </FormControl>
             <FormMessage />
             {state.errors?.username ? (
-              <p className="text-xs text-red-700">
+              <p className="text-xs text-destructive">
                 {state.errors.username[0]}
               </p>
             ) : null}
@@ -168,7 +168,7 @@ function AuthFields({
             </FormControl>
             <FormMessage />
             {state.errors?.password ? (
-              <p className="text-xs text-red-700">
+              <p className="text-xs text-destructive">
                 {state.errors.password[0]}
               </p>
             ) : null}
@@ -177,7 +177,7 @@ function AuthFields({
       />
 
       {state.message ? (
-        <p className="text-xs text-red-700" aria-live="polite">
+        <p className="text-xs text-destructive" aria-live="polite">
           {state.message}
         </p>
       ) : null}

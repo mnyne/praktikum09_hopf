@@ -184,14 +184,14 @@ export default function PixelGrid({
       <div className="flex flex-col gap-3 border bg-white/80 p-4 text-sm shadow-sm backdrop-blur sm:flex-row sm:items-center sm:justify-between">
         <div className="space-y-1">
           {canPaint ? (
-            <p className="text-zinc-700">
+            <p className="text-foreground">
               Du pixelst als{" "}
-              <span className="font-medium text-zinc-950">
+              <span className="font-medium">
                 {currentUserName}
               </span>.
             </p>
           ) : (
-            <p className="text-zinc-700">
+            <p className="text-foreground">
               Zum Setzen von Pixeln brauchst du einen gesicherten Anzeigenamen.
             </p>
           )}
@@ -212,7 +212,7 @@ export default function PixelGrid({
         ) : (
           <p
             role="alert"
-            className="border border-red-500/60 bg-red-950/85 px-4 py-3 text-sm font-medium text-red-50"
+            className="status-message status-message-error"
           >
             {feedback.message}
           </p>

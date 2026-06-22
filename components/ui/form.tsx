@@ -83,7 +83,7 @@ function FormLabel({ className, ...props }: React.ComponentProps<"label">) {
   return (
     <label
       htmlFor={formItemId}
-      className={cn("text-xs font-medium", error && "text-red-700", className)}
+      className={cn("text-xs font-medium", error && "text-destructive", className)}
       {...props}
     />
   );
@@ -111,7 +111,7 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <p
       id={formDescriptionId}
-      className={cn("text-xs text-zinc-600", className)}
+      className={cn("text-xs text-muted-foreground", className)}
       {...props}
     />
   );
@@ -132,7 +132,7 @@ function FormMessage({
   return (
     <p
       id={formMessageId}
-      className={cn("text-xs text-red-700", className)}
+      className={cn("text-xs text-destructive", className)}
       {...props}
     >
       {body}

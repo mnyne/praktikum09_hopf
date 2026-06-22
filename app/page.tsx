@@ -39,7 +39,7 @@ export default function Home() {
             <CardTitle>Imageboard</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm leading-6 text-zinc-400">
+            <p className="text-sm leading-6 text-card-foreground">
               Starte Diskussionen, sammle Gedanken und antworte frei unter
               deinem gesicherten Anzeigenamen, ohne Profilzwang.
             </p>
@@ -54,7 +54,7 @@ export default function Home() {
             <CardTitle>Pixel-Place</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <p className="text-sm leading-6 text-zinc-400">
+            <p className="text-sm leading-6 text-card-foreground">
               Leb deine Kreativität gemeinsam mit anderen aus: setze Pixel,
               hinterlasse Spuren und bau Stück für Stück am gemeinsamen
               Canvas mit.

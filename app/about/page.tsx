@@ -30,7 +30,7 @@ export default function AboutPage() {
             <CardTitle>Anonym, nicht beliebig</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm leading-6 text-zinc-400">
+            <p className="text-sm leading-6 text-card-foreground">
               Du brauchst kein Profil, keine Telefonnummer und keine E-Mail,
               um etwas beizutragen. Anzeigenamen geben Orientierung, ohne aus
               jedem Beitrag gleich eine persönliche Marke zu machen.
@@ -43,7 +43,7 @@ export default function AboutPage() {
             <CardTitle>Diskussion als Raum</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm leading-6 text-zinc-400">
+            <p className="text-sm leading-6 text-card-foreground">
               Threads sind hier keine perfekte Timeline, sondern ein Ort für
               Gedanken, Fragen, Widerspruch, Solidarität und Fundstücke aus
               dem digitalen Alltag.
@@ -56,7 +56,7 @@ export default function AboutPage() {
             <CardTitle>Pixel als Spuren</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-sm leading-6 text-zinc-400">
+            <p className="text-sm leading-6 text-card-foreground">
               Auf dem Canvas entsteht nichts allein. Jeder Pixel ist klein,
               aber zusammen wird daraus eine Fläche, die zeigt, wie viele
               kleine Beiträge sichtbar werden können.
