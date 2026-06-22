@@ -1,6 +1,6 @@
 "use client";
 
-import type { KeyboardEventHandler } from "react";
+import { memo, type KeyboardEventHandler } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -17,7 +17,7 @@ type PixelComponentProps = {
   onClick: () => void;
 };
 
-export default function PixelComponent({
+function PixelComponent({
   id,
   x,
   y,
@@ -41,13 +41,27 @@ export default function PixelComponent({
       onKeyDown={onKeyDown}
       onClick={onClick}
       className={cn(
-        "aspect-square border border-border/20 outline-none transition-transform hover:scale-125 hover:z-10 focus-visible:ring-2 focus-visible:ring-ring",
+        "aspect-square border outline-none transition-transform hover:scale-125 hover:z-10 focus-visible:ring-2 focus-visible:ring-ring",
         disabled && "cursor-not-allowed hover:scale-100",
         selected && "z-10 ring-2 ring-ring"
       )}
       style={{
         backgroundColor: color,
+        borderColor: "var(--place-pixel-border, rgb(115 115 115 / 0.75))",
+        boxShadow: "inset 1px 1px 0 var(--place-pixel-highlight, rgb(255 255 255 / 0.35))",
       }}
     />
   );
 }
+
+export default memo(PixelComponent, (previous, next) => {
+  return (
+    previous.id === next.id &&
+    previous.x === next.x &&
+    previous.y === next.y &&
+    previous.color === next.color &&
+    previous.selected === next.selected &&
+    previous.disabled === next.disabled &&
+    previous.tabIndex === next.tabIndex
+  );
+});

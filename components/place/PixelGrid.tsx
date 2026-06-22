@@ -219,11 +219,11 @@ export default function PixelGrid({
         )
       ) : null}
 
-      <div className="w-full overflow-auto rounded-lg border bg-muted/30 p-4">
+      <div className="place-canvas-frame w-full overflow-auto rounded-lg border bg-muted/30 p-4">
         <div
           role="group"
           aria-label="Pixel-Leinwand. Mit Pfeiltasten zwischen Pixeln navigieren."
-          className="grid origin-top-left"
+          className="place-pixel-grid grid origin-top-left"
           style={{
             gridTemplateColumns: `repeat(${GRID_SIZE}, minmax(0, 1fr))`,
             width: "min(900px, 90vw)",
